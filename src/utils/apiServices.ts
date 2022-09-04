@@ -1,5 +1,6 @@
 /* eslint-disable class-methods-use-this */
-const baseURL = "http://localhost:8080";
+// const baseURL = "http://localhost:8080";
+const baseURL = "https://agfst-api.herokuapp.com";
 
 const getAccessToken = () => sessionStorage.getItem("accessToken") || "";
 
