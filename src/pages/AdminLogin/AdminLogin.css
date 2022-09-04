@@ -1,0 +1,19 @@
+.Admin .onboarding-page-content .svg1 {
+  position: absolute;
+  height: 280px;
+  width: 280px;
+  border-radius: 50%;
+  background-color: #27adb0;
+  top: -30px;
+  right: -150px;
+}
+
+.Admin .onboarding-page-content .svg2 {
+  position: absolute;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  background-color: #cd8a56;
+  bottom: -100px;
+  left: -100px;
+}

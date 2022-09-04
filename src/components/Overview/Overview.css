@@ -1,0 +1,104 @@
+.Overview {
+  display: grid;
+  grid-template-columns: repeat(20, minmax(0, 1fr));
+}
+
+.download-excel {
+  grid-area: 1 / 1 / span 1 / span 20;
+}
+
+.download-excel button {
+  border: none;
+  outline: none;
+  height: 40px;
+  width: 120px;
+  border-radius: 8px;
+  color: var(--white);
+  background-color: #cd8a56;
+}
+
+.sn-wrapper {
+  grid-area: 2 / 1 / span 20 / span 1;
+  background-color: #f5f5f5;
+}
+
+.sn-wrapper ol {
+  margin: 0;
+}
+
+.sn-wrapper ol li::marker {
+  font-size: 14px;
+}
+
+.sn-wrapper p {
+  font-size: 13px;
+  margin: 10px 0 20px 0;
+  text-align: center;
+  font-weight: 500;
+}
+
+.table-wrapper {
+  grid-area: 2 / 2 / span 20 / span 19;
+  overflow-x: scroll;
+}
+
+.table-wrapper::-webkit-scrollbar {
+  height: 7px;
+  width: 7px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background-color: #ccc;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table thead th {
+  color: #414141;
+  font-size: 14px;
+  white-space: nowrap;
+  text-align: start;
+  padding: 10px 20px;
+  background-color: #fafafa;
+}
+
+table tbody td {
+  font-size: 13px;
+  white-space: nowrap;
+  padding: 10px 20px;
+}
+
+@media (max-width: 60rem) {
+  .sn-wrapper ol {
+    padding-left: 30px;
+  }
+}
+
+@media (max-width: 40rem) {
+  .Overview {
+    display: grid;
+    grid-template-columns: repeat(10, minmax(0, 1fr));
+  }
+
+  .download-excel {
+    grid-area: 1 / 1 / span 1 / span 10;
+  }
+  .sn-wrapper {
+    grid-area: 2 / 1 / span 20 / span 1;
+  }
+  .table-wrapper {
+    grid-area: 2 / 2 / span 20 / span 9;
+  }
+  .sn-wrapper ol {
+    padding-left: 30px;
+  }
+}
+
+@media (max-width: 30rem) {
+  .sn-wrapper ol {
+    padding-left: 25px;
+  }
+}

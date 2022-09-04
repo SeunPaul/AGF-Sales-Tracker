@@ -1,0 +1,79 @@
+select {
+  /* for Firefox */
+  -moz-appearance: none;
+  /* for Chrome */
+  -webkit-appearance: none;
+}
+
+/* For IE10 */
+select::-ms-expand {
+  display: none;
+}
+
+#react-select-5-input {
+  background-color: transparent !important;
+}
+
+.FormSelect .css-1s2u09g-control,
+.FormSelect .css-1pahdxg-control,
+.FormSelect .css-1insrsq-control {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: 1px solid var(--modal-background);
+  box-shadow: none;
+  outline: none;
+  padding: 0px 40px 0px 20px;
+  margin-top: 8px;
+  font-size: var(--small-paragraph);
+  letter-spacing: 0.04em;
+}
+
+.FormSelect .css-1s2u09g-control .css-1wy0on6,
+.FormSelect .css-1pahdxg-control .css-1wy0on6,
+.FormSelect .css-1insrsq-control .css-1wy0on6 {
+  display: none;
+}
+
+.FormSelect .css-1pndypt-Input {
+  height: 50px;
+  margin: 0;
+  padding: 0;
+}
+
+.FormSelect .css-1pahdxg-control:hover {
+  border: 1px solid var(--modal-background);
+  box-shadow: none;
+}
+
+.FormSelect .css-1s2u09g-control::after,
+.FormSelect .css-1pahdxg-control::after {
+  content: "S";
+  position: absolute;
+  color: transparent;
+  right: 20px;
+  height: 12px;
+  width: 12px;
+  background-image: url("../../../assets/icons/playDown.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+
+.FormSelect .css-319lph-ValueContainer,
+.FormSelect .css-g1d714-ValueContainer {
+  padding: 0;
+}
+
+.FormSelect .css-6j8wv5-Input,
+.FormSelect .css-jzldcf-Input {
+  height: 50px;
+  margin: 0;
+  padding: 0;
+}
+
+.FormSelect .css-1hb7zxy-IndicatorsContainer {
+  display: none;
+}

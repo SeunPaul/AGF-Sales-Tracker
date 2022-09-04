@@ -1,0 +1,115 @@
+.onboarding-page {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.onboarding-page .onboarding-page-content {
+  position: relative;
+  width: 500px;
+  margin-bottom: 30px;
+}
+
+.onboarding-page .onboarding-page-content .svg1 {
+  position: absolute;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  background-color: #27adb0;
+  top: 50px;
+  right: -50px;
+  z-index: -1;
+}
+
+.onboarding-page .onboarding-page-content .svg2 {
+  position: absolute;
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  background-color: #cd8a56;
+  bottom: -150px;
+  left: -150px;
+}
+
+.onboarding-page .onboarding-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--heading4);
+  width: 500px;
+  color: #414141;
+}
+
+.onboarding-page .onboarding-body {
+  margin-top: 30px;
+  width: 500px;
+  border: 1px solid #eee;
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0px 1px 20px rgb(233, 233, 233);
+  backdrop-filter: blur(3px);
+  border-radius: 15px;
+  padding: 30px 30px;
+  box-sizing: border-box;
+}
+
+.onboarding-page .onboarding-body h3 {
+  font-size: var(--heading3);
+  color: #414141;
+  margin-bottom: 50px;
+}
+
+.onboarding-page .onboarding-body .onboarding-footer {
+  text-align: center;
+  line-height: 23px;
+}
+
+.onboarding-page .onboarding-body .onboarding-footer a {
+  color: var(--green);
+}
+
+.onboarding-page .onboarding-body .onboarding-footer a:hover {
+  color: var(--dark-green);
+}
+
+@media (max-width: 65rem) {
+  .onboarding-page .onboarding-header {
+    width: 100%;
+  }
+}
+
+@media (max-width: 40rem) {
+  .onboarding-page {
+    margin-top: 30px;
+  }
+  .onboarding-page .onboarding-page-content,
+  .onboarding-page .onboarding-body {
+    width: 100%;
+  }
+  .onboarding-page .onboarding-body h3 {
+    font-size: var(--heading3);
+  }
+  .onboarding-page .onboarding-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .onboarding-page .onboarding-header a:first-child {
+    margin-bottom: 30px;
+  }
+  .onboarding-page .onboarding-body {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 25rem) {
+  .onboarding-page {
+    padding: 0 10px;
+  }
+  .onboarding-page .onboarding-body {
+    padding: 0 20px;
+  }
+  .onboarding-page .onboarding-body h3 {
+    margin-bottom: 30px;
+  }
+}

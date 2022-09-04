@@ -1,0 +1,23 @@
+.FormTextarea {
+  position: relative;
+  margin-top: 30px;
+}
+
+.FormTextarea textarea {
+  height: 150px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: 1px solid var(--modal-background);
+  outline: none;
+  padding: 10px 40px 10px 20px;
+  margin-top: 8px;
+  font-size: var(--small-paragraph);
+  letter-spacing: 0.04em;
+}
+
+.FormTextarea .formfeedback {
+  color: rgb(209, 8, 8);
+  font-size: var(--small-paragraph);
+  margin: 10px 0;
+}

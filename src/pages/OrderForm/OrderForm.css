@@ -1,0 +1,84 @@
+.OrderForm {
+  padding: 0 20px;
+}
+
+.OrderForm .svg-left {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #cd8a56;
+  width: 20px;
+}
+
+.OrderForm .svg-right {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #27adb0;
+  width: 20px;
+}
+
+.logout {
+  text-align: end;
+  margin: 0;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.order-form-heading {
+  color: #414141;
+}
+
+.items-section-label {
+  font-weight: 500;
+  border-bottom: 1px solid #cccccc;
+  margin-top: 40px;
+}
+
+.items-label {
+  font-weight: 700;
+  text-decoration: underline;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.items-label p {
+  margin: 0;
+}
+
+.items-label img {
+  width: 15px;
+  cursor: pointer;
+}
+
+.add-another {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  cursor: pointer;
+  width: 200px;
+}
+
+.add-another img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+@media (max-width: 50rem) {
+  .OrderForm .svg-left {
+    left: 0;
+    top: 0;
+    height: 10px;
+    width: 100%;
+    z-index: 5;
+  }
+  .OrderForm .svg-right {
+    display: none;
+  }
+}

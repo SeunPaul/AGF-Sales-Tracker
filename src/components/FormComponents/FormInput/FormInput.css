@@ -1,0 +1,66 @@
+.FormInput {
+  margin-top: 30px;
+}
+
+.FormInput .subLabel,
+.FormRichTextbox .subLabel {
+  font-size: 12px;
+}
+
+.FormInput .bottom-label,
+.FormRichTextbox .bottom-label {
+  font-size: 12px;
+}
+
+.FormInput .input-wrapper {
+  position: relative;
+}
+
+.FormInput input {
+  height: 50px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: 1px solid var(--modal-background);
+  outline: none;
+  padding: 5px 40px 5px 20px;
+  margin-top: 8px;
+  font-size: var(--small-paragraph);
+  letter-spacing: 0.04em;
+  background-color: transparent;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.FormInput svg {
+  fill: var(--green);
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  bottom: 26px;
+  transform: translateY(50%);
+}
+
+.FormInput .formfeedback,
+.FormRichTextbox .formfeedback {
+  color: rgb(209, 8, 8);
+  font-size: var(--small-paragraph);
+  margin: 10px 0;
+}
+
+@media (max-width: 30rem) {
+  .FormInput label {
+    font-size: var(--small-paragraph);
+  }
+  .FormInput {
+    margin-top: 20px;
+  }
+}
