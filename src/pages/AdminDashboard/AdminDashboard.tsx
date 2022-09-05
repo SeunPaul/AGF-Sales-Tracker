@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Overview from "../../components/Overview/Overview";
+import Users from "../../components/Users/Users";
+import AddUser from "../../components/AddUser/AddUser";
 import notify from "../../helpers/notify";
+import userIcon from "../../assets/icons/user.png";
 import "./AdminDashboard.css";
 
 // api service
@@ -48,9 +51,9 @@ function AdminDashboard({ user, setLoggedIn, setUser }: OrderPropType) {
       case "Overview":
         return <Overview />;
       case "Users":
-        return <p>Users</p>;
+        return <Users />;
       case "Add User":
-        return <p>Add User</p>;
+        return <AddUser role={user?.role} />;
       default:
         return <p>No page to display</p>;
     }
@@ -61,9 +64,15 @@ function AdminDashboard({ user, setLoggedIn, setUser }: OrderPropType) {
       <div className="public-page-wrapper">
         <div className="AdminDashboard">
           <div className="contact-section2 contact-section">
-            <p className="logout" onClick={onLogout}>
-              Logout
-            </p>
+            <div className="info-logout">
+              <div>
+                <img src={userIcon} alt="" />
+                <p>{user?.username}</p>
+              </div>
+              <p className="logout" onClick={onLogout}>
+                Logout
+              </p>
+            </div>
             <div className="order-form-heading">
               <h2>Admin Dashboard</h2>
               <div className="navigators">

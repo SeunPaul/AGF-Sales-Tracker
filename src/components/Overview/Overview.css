@@ -5,6 +5,9 @@
 
 .download-excel {
   grid-area: 1 / 1 / span 1 / span 20;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .download-excel button {
@@ -15,6 +18,22 @@
   border-radius: 8px;
   color: var(--white);
   background-color: #cd8a56;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.date-filter label {
+  font-size: 14px;
+  margin: 0 10px;
+}
+
+.date-filter p {
+  font-size: 12px;
+  background-color: #f5f5f5;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 10px 0;
 }
 
 .sn-wrapper {
@@ -69,6 +88,11 @@ table tbody td {
   font-size: 13px;
   white-space: nowrap;
   padding: 10px 20px;
+}
+
+table tbody td img {
+  width: 12px;
+  cursor: pointer;
 }
 
 @media (max-width: 60rem) {

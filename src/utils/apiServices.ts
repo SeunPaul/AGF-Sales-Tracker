@@ -1,6 +1,6 @@
 /* eslint-disable class-methods-use-this */
 // const baseURL = "http://localhost:8080";
-const baseURL = "https://agfst-api.herokuapp.com";
+const baseURL = "https://agt-sales-tracker-267p.onrender.com";
 
 const getAccessToken = () => sessionStorage.getItem("accessToken") || "";
 
@@ -63,7 +63,7 @@ class APIServices {
       body: JSON.stringify(data),
     });
 
-    if (response.ok || response.status === 401) {
+    if (response.ok || response.status === 401 || response.status === 400) {
       return response.json();
     }
 
@@ -90,7 +90,7 @@ class APIServices {
     return { message: `${response.statusText}. unable to get profile` };
   }
 
-  async getUsers(data: CreateUserParameters) {
+  async getUsers() {
     const accessToken = getAccessToken();
     const response = await fetch(`${baseURL}/user/users`, {
       method: "get",

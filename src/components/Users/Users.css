@@ -1,0 +1,47 @@
+.Users {
+  max-width: 35rem;
+}
+
+.Users {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+}
+
+.Users .table-wrapper {
+  grid-area: 1 / 1 / span 20 / span 10;
+  overflow-x: scroll;
+}
+
+.Users .table-wrapper::-webkit-scrollbar {
+  height: 7px;
+  width: 7px;
+}
+
+.Users .table-wrapper::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background-color: #ccc;
+}
+
+.Users table {
+  border-collapse: collapse;
+}
+
+.Users table thead th {
+  color: #414141;
+  font-size: 16px;
+  white-space: nowrap;
+  text-align: start;
+  padding: 10px 20px;
+  background-color: #fafafa;
+}
+
+.Users table tbody td {
+  font-size: 14px;
+  white-space: nowrap;
+  padding: 10px 20px;
+}
+
+.Users table tbody td img {
+  width: 12px;
+  cursor: pointer;
+}

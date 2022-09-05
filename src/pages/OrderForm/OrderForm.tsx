@@ -6,6 +6,7 @@ import FormSelect from "../../components/FormComponents/FormSelect/FormSelect";
 import FormButton from "../../components/FormComponents/FormButton/FormButton";
 import add from "../../assets/icons/add.png";
 import deleteIcon from "../../assets/icons/delete.svg";
+import userIcon from "../../assets/icons/user.png";
 import "./OrderForm.css";
 import notify from "../../helpers/notify";
 
@@ -296,9 +297,15 @@ function OrderForm({ user, setLoggedIn, setUser }: OrderPropType) {
           <div className="svg-left" />
           <div className="svg-right" />
           <div className="contact-section2 contact-section">
-            <p className="logout" onClick={onLogout}>
-              Logout
-            </p>
+            <div className="info-logout">
+              <div>
+                <img src={userIcon} alt="" />
+                <p>{user?.username}</p>
+              </div>
+              <p className="logout" onClick={onLogout}>
+                Logout
+              </p>
+            </div>
             <div className="order-form-heading">
               <h2>Order Form</h2>
               <p>Fill the form below to raise an order</p>
@@ -489,9 +496,9 @@ function OrderForm({ user, setLoggedIn, setUser }: OrderPropType) {
                   />
                 </div>
               ))}
-              <div className="add-another">
+              <div className="add-another" onClick={addItem}>
                 <img src={add} alt="" />
-                <p onClick={addItem}>Add Another Item</p>
+                <p>Add Another Item</p>
               </div>
               <FormButton label="Raise Order" error={false} loading={loading} />
             </form>
