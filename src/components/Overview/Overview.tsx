@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useRef } from "react";
-import { DownloadTableExcel } from "react-export-table-to-excel";
+import React, { useEffect, useState } from "react";
+import { utils, writeFile } from "xlsx";
 import deleteIcon from "../../assets/icons/delete.svg";
 import notify from "../../helpers/notify";
 import "./Overview.css";
@@ -32,13 +32,32 @@ type OrdersType =
     }[]
   | [];
 
+type FormattedDataType = {
+  Date: string;
+  "Customer Name": string;
+  Country: string;
+  State: string;
+  City: string;
+  Address: string;
+  Tell: string;
+  Email: string;
+  Brand: string;
+  "Prod Manager": string;
+  "SM Manager": string;
+  "Item Ordered": string;
+  "Item Cost": number;
+  Cutter: string;
+  Stitcher: string;
+  "Cut Cost": number;
+  "Tailoring Fee": number;
+  Uploader?: string;
+}[];
+
 function Overview() {
   const [overviewLoading, setOverviewLoading] = useState(true);
   const [orders, setOrders] = useState<OrdersType>([]);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-
-  const tableRef = useRef(null);
 
   const setDate = (type: string, value: string) => {
     if (type === "start") {
@@ -83,6 +102,79 @@ function Overview() {
     }
   };
 
+  const onDownloadExcel = () => {
+    // filter the ones in date range
+    const filteredOrders = orders.filter(
+      (order) =>
+        (startDate === "" ||
+          new Date(order.created_at).toLocaleDateString() >=
+            new Date(startDate).toLocaleDateString()) &&
+        (endDate === "" ||
+          new Date(order.created_at).toLocaleDateString() <=
+            new Date(endDate).toLocaleDateString())
+    );
+
+    let formattedData: FormattedDataType = [];
+
+    filteredOrders.forEach((order) => {
+      formattedData = formattedData.concat([
+        {
+          Date: new Date(order.created_at).toLocaleDateString(),
+          "Customer Name": order.customer_name,
+          Country: order.country,
+          State: order.state,
+          City: order.city,
+          Address: order.address,
+          Tell: order.phone_number,
+          Email: order.email,
+          Brand: order.brand,
+          "Prod Manager": order.production_manager,
+          "SM Manager": order.sm_manager,
+          "Item Ordered": order.items[0].item_ordered,
+          "Item Cost": order.items[0].item_cost,
+          Cutter: order.items[0].cutter,
+          Stitcher: order.items[0].stitcher,
+          "Cut Cost": order.items[0].cut_cost,
+          "Tailoring Fee": order.items[0].tailoring_fee,
+          Uploader: order.uploader,
+        },
+      ]);
+      order.items.forEach((item, i) => {
+        if (i > 0) {
+          formattedData = formattedData.concat([
+            {
+              Date: "",
+              "Customer Name": "",
+              Country: "",
+              State: "",
+              City: "",
+              Address: "",
+              Tell: "",
+              Email: "",
+              Brand: "",
+              "Prod Manager": "",
+              "SM Manager": "",
+              "Item Ordered": item.item_ordered,
+              "Item Cost": item.item_cost,
+              Cutter: item.cutter,
+              Stitcher: item.stitcher,
+              "Cut Cost": item.cut_cost,
+              "Tailoring Fee": item.tailoring_fee,
+              Uploader: "",
+            },
+          ]);
+        }
+      });
+    });
+
+    const wb = utils.book_new();
+    const ws = utils.json_to_sheet(formattedData);
+
+    utils.book_append_sheet(wb, ws, "Orders");
+
+    writeFile(wb, "Orders.xlsx");
+  };
+
   useEffect(() => {
     APIService.getOrders()
       .then((res) => {
@@ -107,13 +199,9 @@ function Overview() {
   ) : (
     <div className="Overview">
       <div className="download-excel">
-        <DownloadTableExcel
-          filename="orders table"
-          sheet="orders"
-          currentTableRef={tableRef.current}
-        >
-          <button> Export excel </button>
-        </DownloadTableExcel>
+        <button type="button" onClick={onDownloadExcel}>
+          Export excel
+        </button>
         <div className="date-filter">
           <div>
             <label>Start</label>
@@ -165,7 +253,7 @@ function Overview() {
         )}
       </div>
       <div className="table-wrapper">
-        <table ref={tableRef}>
+        <table>
           <thead>
             <tr>
               <th>Date</th>

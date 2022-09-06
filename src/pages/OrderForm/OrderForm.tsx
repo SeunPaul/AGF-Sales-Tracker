@@ -198,6 +198,8 @@ function OrderForm({ user, setLoggedIn, setUser }: OrderPropType) {
     { label: "Abosede", value: "Abosede" },
     { label: "Toyin", value: "Toyin" },
     { label: "Opeyemi Boy", value: "Opeyemi Boy" },
+    { label: "Ganiyat", value: "Ganiyat" },
+    { label: "Folashade", value: "Folashade" },
   ];
 
   const cutCost = [
