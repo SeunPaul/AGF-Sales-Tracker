@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import FormInput from "../../components/FormComponents/FormInput/FormInput";
@@ -31,8 +31,14 @@ type OrderPropType = {
   ) => void;
 };
 
+type OptionType = {
+  type: string;
+  value: string;
+};
+
 function OrderForm({ user, setLoggedIn, setUser }: OrderPropType) {
   const [loading, setLoading] = useState(false);
+  const [options, setOptions] = useState<OptionType[]>([]);
   const { register, formState, control, handleSubmit } = useForm();
 
   const [itemsTrack, setItemsTrack] = useState([1]);
@@ -79,149 +85,6 @@ function OrderForm({ user, setLoggedIn, setUser }: OrderPropType) {
     { label: "Taraba", value: "Taraba" },
     { label: "Yobe", value: "Yobe" },
     { label: "Zamfarawa", value: "Zamfarawa" },
-  ];
-
-  const brands = [
-    { label: "WorkingGirlNG", value: "WorkingGirlNG" },
-    { label: "ShirtRepublic", value: "ShirtRepublic" },
-    { label: "OfficePlug", value: "OfficePlug" },
-    { label: "OliviersCloset", value: "OliviersCloset" },
-    { label: "Stylestation", value: "Stylestation" },
-    { label: "Denimsng", value: "Denimsng" },
-    { label: "KhadeejahNG", value: "KhadeejahNG" },
-    { label: "SKactive", value: "SKactive" },
-  ];
-
-  const prodManagers = [
-    { label: "Aighangbe Tina", value: "Aighangbe Tina" },
-    { label: "Ogoh mercy chiwendu", value: "Ogoh mercy chiwendu" },
-    { label: "Joseph Agnes", value: "Joseph Agnes" },
-    { label: "Ekine Kehinde", value: "Ekine Kehinde" },
-    { label: "Adebimpe", value: "Adebimpe" },
-    { label: "Ajimoti Tunde", value: "Ajimoti Tunde" },
-  ];
-
-  const smManagers = [
-    { label: "Adebimpe Aderemi", value: "Adebimpe Aderemi" },
-    { label: "Onabanjo Azeezat Olamide", value: "Onabanjo Azeezat Olamide" },
-    { label: "Vincent Theophilus", value: "Vincent Theophilus" },
-    { label: "Helen Idokoe", value: "Helen Idokoe" },
-    { label: "Ajimoti Tunde", value: "Ajimoti Tunde" },
-  ];
-
-  const items = [
-    { label: "Dress", value: "Dress" },
-    { label: "Top", value: "Top" },
-    { label: "Skirt", value: "Skirt" },
-    { label: "Pants", value: "Pants" },
-    { label: "Shorts", value: "Shorts" },
-    { label: "Blazers", value: "Blazers" },
-    { label: "Abaya", value: "Abaya" },
-    { label: "Blazer and Pant", value: "Blazer and Pant" },
-    { label: "Blazer and Skirt", value: "Blazer and Skirt" },
-    { label: "Top and Pant", value: "Top and Pant" },
-    { label: "Top and Skirt", value: "Top and Skirt" },
-  ];
-
-  const itemsCost = [
-    { label: "5000", value: "5000" },
-    { label: "6000", value: "6000" },
-    { label: "7000", value: "7000" },
-    { label: "7500", value: "7500" },
-    { label: "7800", value: "7800" },
-    { label: "8000", value: "8000" },
-    { label: "9000", value: "9000" },
-    { label: "10000", value: "10000" },
-    { label: "11000", value: "11000" },
-    { label: "12000", value: "12000" },
-    { label: "13000", value: "13000" },
-    { label: "14000", value: "14000" },
-    { label: "15000", value: "15000" },
-    { label: "16000", value: "16000" },
-    { label: "17000", value: "17000" },
-    { label: "18000", value: "18000" },
-    { label: "19000", value: "19000" },
-    { label: "20000", value: "20000" },
-    { label: "21000", value: "21000" },
-    { label: "22000", value: "22000" },
-    { label: "23000", value: "23000" },
-    { label: "24000", value: "24000" },
-    { label: "25000", value: "25000" },
-    { label: "26000", value: "26000" },
-    { label: "27000", value: "27000" },
-    { label: "28000", value: "28000" },
-    { label: "29000", value: "29000" },
-    { label: "30000", value: "30000" },
-  ];
-
-  const cutters = [
-    { label: "Jhonson", value: "Jhonson" },
-    { label: "Friday", value: "Friday" },
-    { label: "Sarah", value: "Sarah" },
-    { label: "Michael", value: "Michael" },
-  ];
-
-  const stitchers = [
-    { label: "Ibrahim", value: "Ibrahim" },
-    { label: "Usman", value: "Usman" },
-    { label: "Abdul-Rahmon", value: "Abdul-Rahmon" },
-    { label: "Precious", value: "Precious" },
-    { label: "Yinka", value: "Yinka" },
-    { label: "Olokodana", value: "Olokodana" },
-    { label: "Anu", value: "Anu" },
-    { label: "Iseoluwa", value: "Iseoluwa" },
-    { label: "Michael", value: "Michael" },
-    { label: "Janet", value: "Janet" },
-    { label: "Suliyat", value: "Suliyat" },
-    { label: "Kehinde", value: "Kehinde" },
-    { label: "George", value: "George" },
-    { label: "Elizabeth", value: "Elizabeth" },
-    { label: "Shade", value: "Shade" },
-    { label: "Opeyemi Girl", value: "Opeyemi Girl" },
-    { label: "Imole", value: "Imole" },
-    { label: "Matthew", value: "Matthew" },
-    { label: "Eniola", value: "Eniola" },
-    { label: "Yetunde", value: "Yetunde" },
-    { label: "Ahmed", value: "Ahmed" },
-    { label: "Hawawu", value: "Hawawu" },
-    { label: "Hannah", value: "Hannah" },
-    { label: "Mrs Nancy", value: "Mrs Nancy" },
-    { label: "Ramota", value: "Ramota" },
-    { label: "Deborah", value: "Deborah" },
-    { label: "Barakat", value: "Barakat" },
-    { label: "Mary", value: "Mary" },
-    { label: "Fatimoh", value: "Fatimoh" },
-    { label: "Fatiu", value: "Fatiu" },
-    { label: "Wumi2", value: "Wumi2" },
-    { label: "Wole", value: "Wole" },
-    { label: "Funmi", value: "Funmi" },
-    { label: "Abosede", value: "Abosede" },
-    { label: "Toyin", value: "Toyin" },
-    { label: "Opeyemi Boy", value: "Opeyemi Boy" },
-    { label: "Ganiyat", value: "Ganiyat" },
-    { label: "Folashade", value: "Folashade" },
-  ];
-
-  const cutCost = [
-    { label: "100", value: "100" },
-    { label: "150", value: "150" },
-    { label: "200", value: "200" },
-    { label: "250", value: "250" },
-  ];
-
-  const tailoringFee = [
-    { label: "400", value: "400" },
-    { label: "500", value: "500" },
-    { label: "600", value: "600" },
-    { label: "700", value: "700" },
-    { label: "800", value: "800" },
-    { label: "900", value: "900" },
-    { label: "1000", value: "1000" },
-    { label: "1200", value: "1200" },
-    { label: "1500", value: "1500" },
-    { label: "2000", value: "2000" },
-    { label: "2500", value: "2500" },
-    { label: "3000", value: "3000" },
   ];
 
   const onLogout = () => {
@@ -291,6 +154,22 @@ function OrderForm({ user, setLoggedIn, setUser }: OrderPropType) {
         notify("error", "An error occured. Check your connection");
       });
   };
+
+  useEffect(() => {
+    APIService.getOptions()
+      .then((res) => {
+        if (res.success) {
+          const { data } = res;
+
+          setOptions(data.options);
+        } else {
+          notify("error", res.message);
+        }
+      })
+      .catch(() => {
+        notify("error", "connection error");
+      });
+  }, []);
 
   return (
     <div>
@@ -392,8 +271,10 @@ function OrderForm({ user, setLoggedIn, setUser }: OrderPropType) {
                 label="Brand"
                 control={control}
                 name="brand"
-                placeholder="Select Brand"
-                options={brands}
+                placeholder={options.length ? "Select Brand" : "Loading..."}
+                options={options
+                  .filter((item) => item.type === "brands")
+                  .map((item) => ({ label: item.value, value: item.value }))}
                 formState={formState}
                 rules={{
                   required: "Select Brand",
@@ -403,8 +284,12 @@ function OrderForm({ user, setLoggedIn, setUser }: OrderPropType) {
                 label="Production Manager"
                 control={control}
                 name="production_manager"
-                placeholder="Select Production Manager"
-                options={prodManagers}
+                placeholder={
+                  options.length ? "Select Production Manager" : "Loading..."
+                }
+                options={options
+                  .filter((item) => item.type === "prodManagers")
+                  .map((item) => ({ label: item.value, value: item.value }))}
                 formState={formState}
                 rules={{
                   required: "Select Production Manager",
@@ -414,8 +299,12 @@ function OrderForm({ user, setLoggedIn, setUser }: OrderPropType) {
                 label="SM Manager"
                 control={control}
                 name="sm_manager"
-                placeholder="Select SM Manager"
-                options={smManagers}
+                placeholder={
+                  options.length ? "Select SM Manager" : "Loading..."
+                }
+                options={options
+                  .filter((item) => item.type === "smManagers")
+                  .map((item) => ({ label: item.value, value: item.value }))}
                 formState={formState}
                 rules={{
                   required: "Select SM Manager",
@@ -434,8 +323,15 @@ function OrderForm({ user, setLoggedIn, setUser }: OrderPropType) {
                     label="Item Ordered"
                     control={control}
                     name={`item_ordered${i}`}
-                    placeholder="Select Item Ordered"
-                    options={items}
+                    placeholder={
+                      options.length ? "Select Item Ordered" : "Loading..."
+                    }
+                    options={options
+                      .filter((item) => item.type === "items")
+                      .map((item) => ({
+                        label: item.value,
+                        value: item.value,
+                      }))}
                     formState={formState}
                     rules={{
                       required: "Select Item Ordered",
@@ -445,8 +341,15 @@ function OrderForm({ user, setLoggedIn, setUser }: OrderPropType) {
                     label="Item Cost"
                     control={control}
                     name={`item_cost${i}`}
-                    placeholder="Select Item Cost"
-                    options={itemsCost}
+                    placeholder={
+                      options.length ? "Select Item Cost" : "Loading..."
+                    }
+                    options={options
+                      .filter((item) => item.type === "itemsCost")
+                      .map((item) => ({
+                        label: item.value,
+                        value: item.value,
+                      }))}
                     formState={formState}
                     rules={{
                       required: "Select Item Cost",
@@ -456,8 +359,15 @@ function OrderForm({ user, setLoggedIn, setUser }: OrderPropType) {
                     label="Cutter"
                     control={control}
                     name={`cutter${i}`}
-                    placeholder="Select Cutter"
-                    options={cutters}
+                    placeholder={
+                      options.length ? "Select Cutter" : "Loading..."
+                    }
+                    options={options
+                      .filter((item) => item.type === "cutters")
+                      .map((item) => ({
+                        label: item.value,
+                        value: item.value,
+                      }))}
                     formState={formState}
                     rules={{
                       required: "Select Cutter",
@@ -467,8 +377,15 @@ function OrderForm({ user, setLoggedIn, setUser }: OrderPropType) {
                     label="Stitcher"
                     control={control}
                     name={`stitcher${i}`}
-                    placeholder="Select Stitcher"
-                    options={stitchers}
+                    placeholder={
+                      options.length ? "Select Stitcher" : "Loading..."
+                    }
+                    options={options
+                      .filter((item) => item.type === "stitchers")
+                      .map((item) => ({
+                        label: item.value,
+                        value: item.value,
+                      }))}
                     formState={formState}
                     rules={{
                       required: "Select Stitcher",
@@ -478,8 +395,15 @@ function OrderForm({ user, setLoggedIn, setUser }: OrderPropType) {
                     label="Cut Cost"
                     control={control}
                     name={`cut_cost${i}`}
-                    placeholder="Select Cut Cost"
-                    options={cutCost}
+                    placeholder={
+                      options.length ? "Select Cut Cost" : "Loading..."
+                    }
+                    options={options
+                      .filter((item) => item.type === "cutCost")
+                      .map((item) => ({
+                        label: item.value,
+                        value: item.value,
+                      }))}
                     formState={formState}
                     rules={{
                       required: "Select Cut Cost",
@@ -489,8 +413,15 @@ function OrderForm({ user, setLoggedIn, setUser }: OrderPropType) {
                     label="Tailoring Fee"
                     control={control}
                     name={`tailoring_fee${i}`}
-                    placeholder="Select Tailoring Fee"
-                    options={tailoringFee}
+                    placeholder={
+                      options.length ? "Select Tailoring Fee" : "Loading..."
+                    }
+                    options={options
+                      .filter((item) => item.type === "tailoringFee")
+                      .map((item) => ({
+                        label: item.value,
+                        value: item.value,
+                      }))}
                     formState={formState}
                     rules={{
                       required: "Select Tailoring Fee",

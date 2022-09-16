@@ -13,6 +13,7 @@ type UserType = {
 function Users() {
   const [usersLoading, setUsersLoading] = useState(true);
   const [users, setUsers] = useState<UserType>([]);
+  const [refresh, setRefresh] = useState(false);
 
   const deleteUser = (id: string) => {
     if (
@@ -24,7 +25,7 @@ function Users() {
         .then((res) => {
           if (res.success) {
             notify("success", res.message);
-            window.location.reload();
+            setRefresh(!refresh);
           } else {
             notify("error", res.message);
           }
@@ -52,7 +53,7 @@ function Users() {
         notify("error", "connection error");
         setUsersLoading(false);
       });
-  }, []);
+  }, [refresh]);
 
   return usersLoading ? (
     <p>users loading...</p>

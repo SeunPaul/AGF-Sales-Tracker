@@ -1,0 +1,26 @@
+.Options {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Options .options-nav {
+  margin-right: 50px;
+}
+
+.Options .options-nav p {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@media (max-width: 50rem) {
+  .Options .options-nav {
+    margin-right: 0px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .Options .options-nav p {
+    margin: 5px 20px 5px 0;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+}

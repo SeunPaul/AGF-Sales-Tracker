@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import Overview from "../../components/Overview/Overview";
 import Users from "../../components/Users/Users";
 import AddUser from "../../components/AddUser/AddUser";
+import Options from "../../components/Options/Options";
+import AddOption from "../../components/AddOption/AddOption";
 import notify from "../../helpers/notify";
 import userIcon from "../../assets/icons/user.png";
 import "./AdminDashboard.css";
@@ -54,6 +56,10 @@ function AdminDashboard({ user, setLoggedIn, setUser }: OrderPropType) {
         return <Users />;
       case "Add User":
         return <AddUser role={user?.role} />;
+      case "Options":
+        return <Options />;
+      case "Add Option":
+        return <AddOption />;
       default:
         return <p>No page to display</p>;
     }
@@ -99,6 +105,22 @@ function AdminDashboard({ user, setLoggedIn, setUser }: OrderPropType) {
                   }}
                 >
                   Add User
+                </p>
+                <p
+                  className={page === "Add User" ? "selected" : ""}
+                  onClick={() => {
+                    setPage("Options");
+                  }}
+                >
+                  Options
+                </p>
+                <p
+                  className={page === "Add User" ? "selected" : ""}
+                  onClick={() => {
+                    setPage("Add Option");
+                  }}
+                >
+                  Add Option
                 </p>
               </div>
             </div>

@@ -50,6 +50,11 @@ type CreateOrderParameters = {
   }[];
 };
 
+type CreateOptionParameters = {
+  type: string;
+  value: string;
+};
+
 class APIServices {
   // users
   async createUser(data: CreateUserParameters) {
@@ -243,6 +248,65 @@ class APIServices {
 
     return {
       message: `${response.statusText}. unable to delte order`,
+    };
+  }
+
+  // options
+  async createOption(data: CreateOptionParameters) {
+    const accessToken = getAccessToken();
+    const response = await fetch(`${baseURL}/option/create`, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (response.ok || response.status === 401) {
+      return response.json();
+    }
+
+    return {
+      message: `${response.statusText}. unable to create option`,
+    };
+  }
+
+  async getOptions() {
+    const accessToken = getAccessToken();
+    const response = await fetch(`${baseURL}/option/options`, {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    if (response.ok || response.status === 401) {
+      return response.json();
+    }
+
+    return {
+      message: `${response.statusText}. unable to get options`,
+    };
+  }
+
+  async deleteOption(data: { optionId: string }) {
+    const accessToken = getAccessToken();
+    const response = await fetch(`${baseURL}/option/delete/${data.optionId}`, {
+      method: "delete",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    if (response.ok || response.status === 401) {
+      return response.json();
+    }
+
+    return {
+      message: `${response.statusText}. unable to delte option`,
     };
   }
 }
