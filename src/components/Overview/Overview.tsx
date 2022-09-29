@@ -226,36 +226,11 @@ function Overview() {
           <p onClick={clearDateFilter}>Clear</p>
         </div>
       </div>
-      <div className="sn-wrapper">
-        <p>s/n</p>
-        {orders.map(
-          (order, i) =>
-            (startDate === "" ||
-              new Date(order.created_at).toLocaleDateString() >=
-                new Date(startDate).toLocaleDateString()) &&
-            (endDate === "" ||
-              new Date(order.created_at).toLocaleDateString() <=
-                new Date(endDate).toLocaleDateString()) && (
-              <div key={order.id}>
-                <p>{i + 1}</p>
-                <ol type="a">
-                  {order.items.map(
-                    (item, i) =>
-                      i > 0 && (
-                        <li key={`${order.id}${i}`}>
-                          <p />
-                        </li>
-                      )
-                  )}
-                </ol>
-              </div>
-            )
-        )}
-      </div>
       <div className="table-wrapper">
         <table>
           <thead>
             <tr>
+              <th>s/n</th>
               <th>Date</th>
               <th>Customer Name</th>
               <th>Country</th>
@@ -288,6 +263,7 @@ function Overview() {
                     new Date(endDate).toLocaleDateString()) && (
                   <React.Fragment key={order.id}>
                     <tr>
+                      <td>{i + 1}</td>
                       <td>{new Date(order.created_at).toLocaleDateString()}</td>
                       <td>{order.customer_name}</td>
                       <td>{order.country}</td>
@@ -320,6 +296,9 @@ function Overview() {
                       (item, i) =>
                         i > 0 && (
                           <tr key={`${order.id}${i}`}>
+                            <td>
+                              <span />
+                            </td>
                             <td>
                               <span />
                             </td>
